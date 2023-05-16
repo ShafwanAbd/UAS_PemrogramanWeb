@@ -463,9 +463,9 @@
                                         <div class="row align-items-start">   
                                             <div class="col">
                                                 <div class="mb-3">
-                                                    <label for="kumpulZakat_select{{ $value->id }}" class="col-form-label">Nama:</label>
-                                                    <select name="namaKK" type="text" class="form-select" id="kumpulZakat_select{{ $value->id }}" required autofocus>
-                                                        <option value="">-- select --</option>
+                                                    <label for="kumpulZakat_select_edit{{ $value->id }}" class="col-form-label">Nama:</label>
+                                                    <select name="namaKK" type="text" class="form-select" id="kumpulZakat_select_edit{{ $value->id }}" required autofocus>
+                                                        <option value="" disabled>-- select --</option>
                                                         @foreach($datas1 as $key1=>$value1)
                                                             <option value="{{ $value1->namaMuzakki }}"  {{ $value->namaKK == $value1->namaMuzakki ? 'selected' : '' }}>{{ $value1->namaMuzakki }}</option> 
                                                         @endforeach
@@ -473,42 +473,25 @@
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label for="kumpulZakat_text_edit{{ $value->id }}" class="col-form-label">Jumlah Tanggungan:</label>
-                                                    <input value="{{ $value->jumlahTanggungan }}" name="jumlahTanggungan" type="text" class="form-control" id="kumpulZakat_text_edit{{ $value->id }}" readonly>
-                                                </div> 
-
-                                                <script>
-                                                    $(document).ready(function(){  
-
-                                                        $('#kumpulZakat_select{{ $value->id }}').change(function(){ 
-                                                            var namaMuzakki = $(this).val();
-                                                            $.ajax({
-                                                                url: 'http://localhost/UAS_PemrogramanWeb/public/get_jumlah_tanggungan_muzakki/'+namaMuzakki ,
-                                                                success: function(response) {   
-                                                                    $('#kumpulZakat_text_edit{{ $value->id }}').val(response.jumlahTanggungan); 
-                                                                },
-                                                                error: function(xhr) {
-                                                                    console.log(xhr.responseText);
-                                                                }
-                                                            });
-                                                        });
-                                                    });
-                                                </script>
-
-                                                <div class="mb-3">
-                                                    <label for="tanggunganDibayar{{ $value->id }}" class="col-form-label">Jumlah Tanggungan Dibayar:</label>
-                                                    <input value="{{$value->jumlahTanggunganDibayar}}" name="jumlahTanggunganDibayar" type="number" class="form-control" id="tanggunganDibayar{{ $value->id }}" required>
-                                                </div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="mb-3">
                                                     <label for="kumpulZakat_select2{{ $value->id }}" class="col-form-label">Jenis Bayar:</label>
                                                     <select name="jenisBayar" type="text" class="form-select" id="kumpulZakat_select2{{ $value->id }}" required>
-                                                        <option value="">-- select --</option>  
+                                                        <option value="" disabled>-- select --</option>  
                                                         <option value="Beras"  {{ $value->jenisBayar == 'Beras' ? 'selected' : '' }}>Beras</option>
                                                         <option value="Uang" {{ $value->jenisBayar == 'Uang' ? 'selected' : '' }}>Uang</option>
                                                     </select>
+                                                </div> 
+
+                                                <div class="mb-3">
+                                                    <label for="tanggunganDibayar{{ $value->id }}" class="col-form-label">Jumlah Tanggungan Dibayar:</label>
+                                                    <input value="{{$value->jumlahTanggunganDibayar}}" name="jumlahTanggunganDibayar" type="number" class="form-control" id="tanggunganDibayar{{ $value->id }}" min="1" required>
                                                 </div>
+                                            </div>
+                                            <div class="col">
+  
+                                                <div class="mb-3">
+                                                    <label for="kumpulZakat_text_edit{{ $value->id }}" class="col-form-label">Jumlah Tanggungan:</label>
+                                                    <input value="{{ $value->jumlahTanggungan }}" name="jumlahTanggungan" type="text" class="form-control" id="kumpulZakat_text_edit{{ $value->id }}" readonly>
+                                                </div> 
 
                                                 <div class="mb-3">
                                                     <label id="labelFor_kumpulZakat_text2{{ $value->id }}" for="kumpulZakat_text2{{ $value->id }}" class="col-form-label">Bayar (Kg/Rp):</label>
@@ -520,11 +503,31 @@
                                                 </div> 
 
                                                 <script>
+                                                    $(document).ready(function(){
+                                                        $('#kumpulZakat_select_edit{{ $value->id }}').change(function(){ 
+                                                            var namaMuzakki = $(this).val(); 
+                                                            $.ajax({
+                                                                url: '{{ url("get_jumlah_tanggungan_muzakki") }}' + '/' + namaMuzakki ,
+                                                                success: function(response) {   
+                                                                    $('#kumpulZakat_text_edit{{ $value->id }}').val(response.jumlahTanggungan); 
+                                                                },
+                                                                error: function(xhr) {
+                                                                    console.log(xhr.responseText);
+                                                                }
+                                                            });
+                                                        });
+                                                    });
+                                                </script>
+
+                                                <script>
                                                     $(document).ready(function() {
                                                         var jenisBayar;
-                                                        $('#kumpulZakat_select2{{ $value->id }}').change(function(){
+                                                        $('#kumpulZakat_select2{{ $value->id }}').on('input', function(){
                                                             jenisBayar = $(this).val();
-                                                            jumlahBayar = $('#kumpulZakat_text2{{ $value->id }}').val();
+                                                            jumlahBayar = $('#kumpulZakat_text2{{ $value->id }}').val(); 
+                                                            helperJTD = $('#helperJTD{{ $value->id }}');
+                                                            jumlahTanggunganDibayar = $('#tanggunganDibayar');
+
                                                             if (jenisBayar == 'Beras'){
                                                                 $('#labelFor_kumpulZakat_text2{{ $value->id }}').html('Beras (Kg)'); 
                                                                 $('#kumpulZakat_text2{{ $value->id }}').attr('name', 'bayarBeras'); 
@@ -538,15 +541,17 @@
                                                                     $('#kumpulZakat_text2{{ $value->id }}').val(jumlahBayar*16000);
                                                                 }
                                                             } 
-                                                        }) 
+                                                        })  
                                                         
-                                                        $('#tanggunganDibayar{{ $value->id }}').change(function() {
-                                                            var answ = $('#tanggunganDibayar{{ $value->id }}').val(); 
+                                                        // fixed
+                                                        $('#tanggunganDibayar{{ $value->id }}').on('input', function() { 
+                                                            var answ = $('#tanggunganDibayar{{ $value->id }}').val();  
+
                                                             if (jenisBayar == 'Beras'){
                                                                 $('#kumpulZakat_text2{{ $value->id }}').val(2.5*answ);
                                                             } else if (jenisBayar == 'Uang') {
-                                                                $('#kumpulZakat_text2{{ $value->id }}').val(45000*answ);
-                                                            }
+                                                                $('#kumpulZakat_text2{{ $value->id }}').val(40000*answ);
+                                                            } 
                                                         })
                                                     });
                                                 </script> 
