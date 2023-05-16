@@ -30,7 +30,7 @@
                 </button>
 
                 <button class="item view" href="#" data-bs-toggle="modal" data-bs-target="#modal_view">
-                    <h4 class="first">View</h4>
+                    <h4 class="first">Penerima</h4>
                     <div class="container_img">
                         <img src="{{ asset('images/icon/view.png') }}">
                     </div>
@@ -191,7 +191,7 @@
                                         <div class="mb-3">
                                             <label for="kumpulZakat_select" class="col-form-label">Nama:</label>
                                             <select name="nama" type="text" class="form-select" id="kumpulZakat_select" required autofocus>
-                                                <option value="">-- select --</option>
+                                                <option value="" disabled selected>-- select --</option>
                                                 @foreach($datas1 as $key1=>$value1)
                                                     <option value="{{ $value1->namaMuzakki }}">{{ $value1->namaMuzakki }}</option> 
                                                 @endforeach
@@ -201,7 +201,7 @@
                                         <div class="mb-3">
                                             <label for="kumpulZakat_text" class="col-form-label">Kategori:</label>
                                             <select name="kategori" type="text" class="form-select" id="kumpulZakat_text" required> 
-                                                <option value="">-- select --</option>
+                                                <option value="" disabled selected>-- select --</option>
                                                 @foreach($datas2_warga as $key2=>$value2)
                                                     <option value="{{ $value2->namaKategori }}">{{ $value2->namaKategori }}</option>
                                                 @endforeach
@@ -392,7 +392,7 @@
                                         <div class="mb-3">
                                             <label for="kumpulZakat_select" class="col-form-label">Nama:</label>
                                             <select name="nama" type="text" class="form-select" id="kumpulZakat_select" required autofocus>
-                                                <option value="">-- select --</option>
+                                                <option value="" disabled selected>-- select --</option>
                                                 @foreach($datas1 as $key1=>$value1)
                                                     <option value="{{ $value1->namaMuzakki }}" {{ $value->nama == $value1->namaMuzakki ? 'selected' : '' }}>{{ $value1->namaMuzakki }}</option> 
                                                 @endforeach
@@ -402,7 +402,7 @@
                                         <div class="mb-3">
                                             <label for="kumpulZakat_text{{$value->id}}" class="col-form-label">Kategori:</label>
                                                 <select name="kategori" type="text" class="form-select" id="kumpulZakat_text{{$value->id}}" required> 
-                                                    <option value="">-- select --</option>
+                                                    <option value="" disabled selected>-- select --</option>
                                                     @foreach($datas2_warga as $key2=>$value2)
                                                         <option value="{{ $value2->namaKategori }}" {{ $value->kategori == $value2->namaKategori ? 'selected' : '' }}>{{ $value2->namaKategori }}</option>
                                                     @endforeach
@@ -467,7 +467,7 @@
                                                     <div class="mb-3">
                                                         <label for="distZakat_select{{ $value->id }}" class="col-form-label">Jenis Bayar:</label>
                                                         <select name="jenisBayar" class="form-select" id="distZakat_select{{ $value->id }}" required>
-                                                            <option value="">-- select --</option>
+                                                            <option value="" disabled selected>-- select --</option>
                                                             <option value="Beras">Beras</option>
                                                             <option value="Uang">Uang</option>
                                                         </select>

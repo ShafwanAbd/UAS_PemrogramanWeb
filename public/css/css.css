@@ -23,6 +23,10 @@ a {
     transition: 0.25s;
 }
 
+.hidden {
+    display: none;
+}
+
 .alert-message {
     color: #FF7272;
 }

@@ -54,7 +54,7 @@
                                                 $totalJumlahTanggungan += $value->jumlahTanggungan;
                                             @endphp
                                         @endforeach
-                                        <h5>Total Jiwa:</h5>
+                                        <h5>Total Tanggungan:</h5>
                                         <h5>{{ $totalJumlahTanggungan }} Orang</h5>
                                     </div>
                                     <div class="flex">
@@ -108,12 +108,12 @@
                                 <div class="row align-items-start">   
                                     <div class="col">
                                         <div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label">Nama:</label>
+                                            <label for="recipient-name" class="col-form-label">Nama: <span style="color: red;">*</span></label>
                                             <input name="namaMuzakki" type="text" class="form-control" id="recipient-name" required autofocus>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="message-text" class="col-form-label">Jumlah Tanggungan:</label>
+                                            <label for="message-text" class="col-form-label">Jumlah Tanggungan: <span style="color: red;">*</span></label>
                                             <input name="jumlahTanggungan" type="text" class="form-control" id="message-text" required>
                                         </div>
 

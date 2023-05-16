@@ -27,7 +27,7 @@
                 </button>
 
                 <button class="item view" href="#" data-bs-toggle="modal" data-bs-target="#modal_view">
-                    <h4 class="first">View</h4>
+                    <h4 class="first">Pembayar</h4>
                     <div class="container_img">
                         <img src="{{ asset('images/icon/view.png') }}">
                     </div>
@@ -184,7 +184,7 @@
                                             <div class="mb-3">
                                                 <label for="kumpulZakat_select" class="col-form-label">Nama:</label>
                                                 <select name="namaKK" type="text" class="form-select" id="kumpulZakat_select" required autofocus>
-                                                    <option value="">-- select --</option>
+                                                    <option value="" disabled selected>-- select --</option>
                                                     @foreach($datas1 as $key=>$value)
                                                         <option value="{{ $value->namaMuzakki }}">{{ $value->namaMuzakki }}</option> 
                                                     @endforeach
@@ -192,8 +192,30 @@
                                             </div>
 
                                             <div class="mb-3">
+                                                <label for="kumpulZakat_select2" class="col-form-label">Jenis Bayar:</label>
+                                                <select name="jenisBayar" type="text" class="form-select" id="kumpulZakat_select2" required>
+                                                    <option value="" disabled selected>-- select --</option>
+                                                    <option value="Beras">Beras</option>
+                                                    <option value="Uang">Uang</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="tanggunganDibayar" class="col-form-label">Jumlah Tanggungan Dibayar:</label>
+                                                <input name="jumlahTanggunganDibayar" type="number" class="form-control" id="tanggunganDibayar" min="1" readonly required>
+                                                <div id="helperJTD" class="form-text hidden">Mohon Isi Jenis Bayar Terlebih Dahulu.</div>
+                                            </div> 
+                                        </div>
+                                        <div class="col">
+
+                                            <div class="mb-3">
                                                 <label for="kumpulZakat_text" class="col-form-label">Jumlah Tanggungan:</label>
                                                 <input name="jumlahTanggungan" type="text" class="form-control" id="kumpulZakat_text" readonly>
+                                            </div> 
+
+                                            <div class="mb-3">
+                                                <label id="labelFor_kumpulZakat_text2" for="kumpulZakat_text2" class="col-form-label">Bayar (Kg/Rp):</label>
+                                                <input name="" type="text" class="form-control" id="kumpulZakat_text2" readonly>
                                             </div> 
 
                                             <script>
@@ -213,32 +235,15 @@
                                                 });
                                             </script>
 
-                                            <div class="mb-3">
-                                                <label for="tanggunganDibayar" class="col-form-label">Jumlah Tanggungan Dibayar:</label>
-                                                <input name="jumlahTanggunganDibayar" type="number" class="form-control" id="tanggunganDibayar" required>
-                                            </div> 
-                                        </div>
-                                        <div class="col">
-                                            <div class="mb-3">
-                                                <label for="kumpulZakat_select2" class="col-form-label">Jenis Bayar:</label>
-                                                <select name="jenisBayar" type="text" class="form-select" id="kumpulZakat_select2" required>
-                                                    <option value="">-- select --</option>
-                                                    <option value="Beras">Beras</option>
-                                                    <option value="Uang">Uang</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label id="labelFor_kumpulZakat_text2" for="kumpulZakat_text2" class="col-form-label">Bayar (Kg/Rp):</label>
-                                                <input name="" type="text" class="form-control" id="kumpulZakat_text2" readonly>
-                                            </div> 
-
                                             <script>
                                                 $(document).ready(function() {
                                                     var jenisBayar;
-                                                    $('#kumpulZakat_select2').change(function(){
+                                                    $('#kumpulZakat_select2').on('input', function(){
                                                         jenisBayar = $(this).val();
-                                                        jumlahBayar = $('#kumpulZakat_text2').val();
+                                                        jumlahBayar = $('#kumpulZakat_text2').val(); 
+                                                        helperJTD = $('#helperJTD');
+                                                        jumlahTanggunganDibayar = $('#tanggunganDibayar');
+
                                                         if (jenisBayar == 'Beras'){
                                                             $('#labelFor_kumpulZakat_text2').html('Beras (Kg)'); 
                                                             $('#kumpulZakat_text2').attr('name', 'bayarBeras'); 
@@ -252,10 +257,35 @@
                                                                 $('#kumpulZakat_text2').val(jumlahBayar*16000);
                                                             }
                                                         }
+
+                                                        if (valueJenisBayar !== ''){
+                                                            helperJTD.addClass('hidden');
+                                                            jumlahTanggunganDibayar.removeAttr('readonly')
+                                                        }
                                                     }) 
+
+                                                    // if user clicked before what planned
+                                                    $('#tanggunganDibayar').on('click', function(){ 
+                                                        JenisBayar = $('#kumpulZakat_select2');
+                                                        valueJenisBayar = $('#kumpulZakat_select2').val();
+                                                        helperJTD = $('#helperJTD');
+
+                                                        if (valueJenisBayar !== 'Beras' && valueJenisBayar !== 'Uang'){
+                                                            helperJTD.removeClass('hidden');
+                                                        } else {
+                                                            helperJTD.addClass('hidden');
+                                                            jumlahTanggunganDibayar.removeAttr('readonly')
+                                                        }
+                                                    })
                                                     
-                                                    $('#tanggunganDibayar').change(function() {
+                                                    // fixed
+                                                    $('#tanggunganDibayar').on('input', function() {
                                                         var answ = $('#tanggunganDibayar').val(); 
+
+                                                        if (JenisBayar === '' && JenisBayar.click){
+                                                            alert('p');
+                                                        }
+
                                                         if (jenisBayar == 'Beras'){
                                                             $('#kumpulZakat_text2').val(2.5*answ);
                                                         } else if (jenisBayar == 'Uang') {
@@ -266,8 +296,7 @@
                                             </script> 
                                         </div>
                                     </div>
-
-                                    
+ 
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
