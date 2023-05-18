@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('keterangan')->nullable();;  
             $table->string('NIK')->nullable();;  
             $table->string('noKK')->nullable();;  
+            $table->string('isWarga');
+            $table->string('isLainnya');
             $table->timestamps();
         });
     }

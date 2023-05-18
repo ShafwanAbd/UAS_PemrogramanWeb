@@ -27,6 +27,7 @@ Route::get('/beranda', [MainController::class, 'beranda']);
 Route::get('/get_jumlah_tanggungan_muzakki/{namaMuzakki}', [MainController::class, 'getJumlahTanggunganMuzakki']);
 Route::get('/get_kategori_muzakki/{kategori}', [MainController::class, 'getKategoriMuzakki']); 
 
+Route::get('/laporan/ringkasan', [LaporanController::class, 'ringkasan']); 
 Route::get('/laporan/distribusiWarga', [LaporanController::class, 'laporanWarga']); 
 Route::get('/laporan/distribusiLainnya', [LaporanController::class, 'laporanLainnya']); 
 

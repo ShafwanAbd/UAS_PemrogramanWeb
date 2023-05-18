@@ -5,10 +5,27 @@ namespace App\Http\Controllers;
 use App\Models\DistribusiLainnya;
 use App\Models\DistribusiZakat;
 use App\Models\KategoriMustahik;
+use App\Models\Muzakki;
+use App\Models\Result;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
 { 
+    public function ringkasan(){
+        $datas['result'] = Result::first();
+        $datas['muzakki'] = Muzakki::all()->count();
+        $datas['tanggungan'] = 0;
+
+        $tanggungan = Muzakki::all()->pluck('jumlahTanggungan');
+        foreach($tanggungan as $i){
+            $datas['tanggungan'] += $i;
+        } 
+        
+        return view('laporan.ringkasan', compact(
+            'datas'
+        ));
+    }
+
     public function laporanWarga()
     { 
         $fakir = DistribusiZakat::where('kategori', 'Fakir')->where('terima', 1)->first();

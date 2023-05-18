@@ -32,7 +32,10 @@ class DistribusiZakatController extends Controller
             $datas = DistribusiZakat::where('terima', 0)->get();
         }
         $datas_accepted = DistribusiZakat::where('terima', 1)->get();
-        $datas1 = Muzakki::all();
+        $datas1_pre = DistribusiZakat::where('added', 1)->pluck('nama');
+        $datas1 = Muzakki::whereNotIn('namaMuzakki', $datas1_pre)
+                            ->where('isLainnya', 0)
+                            ->get();
         $datas2 = KategoriMustahik::all();
         $datas2_warga = KategoriMustahik::whereIn('namaKategori', ['Fakir', 'Mampu', 'Miskin'])->get();
         $datas3 = Result::all();
@@ -55,6 +58,7 @@ class DistribusiZakatController extends Controller
     public function store(Request $request)
     {
         $model = new DistribusiZakat;
+        $model2 = Muzakki::where('namaMuzakki', $request->nama)->first();
  
         $model->nama = $request->nama;
         $model->kategori = $request->kategori;
@@ -62,8 +66,12 @@ class DistribusiZakatController extends Controller
         $model->NIK = $request->NIK;
         $model->noKK = $request->noKK;  
         $model->terima = 0;  
+        $model->added = 1;  
 
-        $model->save();
+        $model2->isWarga = 1;
+
+        $model->save(); 
+        $model2->save();
 
         return redirect('/zakatFitrah/distribusiZakat')->with('success', 'Berhasil Menambahkan Data!');
     }
@@ -88,15 +96,15 @@ class DistribusiZakatController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $model = DistribusiZakat::find($id);
+        $model = DistribusiZakat::find($id); 
  
         $model->nama = $request->nama;
         $model->kategori = $request->kategori;
         $model->hak = $request->hak;
         $model->NIK = $request->NIK;
-        $model->noKK = $request->noKK; 
+        $model->noKK = $request->noKK;  
 
-        $model->save();
+        $model->save(); 
         
         return redirect('/zakatFitrah/distribusiZakat')->with('success', 'Berhasil Mengubah Data!');
     }
@@ -138,6 +146,11 @@ class DistribusiZakatController extends Controller
     public function destroy(string $id)
     { 
         $model = DistribusiZakat::find($id);
+        $model2 = Muzakki::where('namaMuzakki', $model->nama)->first(); 
+        
+        $model2->isLainnya = 0;
+
+        $model2->save();
         $model->delete();
 
         return redirect('/zakatFitrah/distribusiZakat')->with('success', 'Berhasil Menghapus Data!');

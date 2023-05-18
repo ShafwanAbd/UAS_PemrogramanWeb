@@ -32,7 +32,10 @@ class DistribusiLainnyaController extends Controller
             $datas = DistribusiLainnya::where('terima', 0)->get();
         }
         $datas_accepted = DistribusiLainnya::where('terima', 1)->get();
-        $datas1 = Muzakki::all();
+        $datas1_pre = DistribusiLainnya::where('added', 1)->pluck('nama');
+        $datas1 = Muzakki::whereNotIn('namaMuzakki', $datas1_pre)
+                            ->where('isWarga', 0)
+                            ->get(); 
         $datas2 = KategoriMustahik::all();
         $datas2_lainnya = KategoriMustahik::whereNotIn('namaKategori', ['Fakir', 'Mampu', 'Miskin', 'Riqab', 'Gharim'])->get();
         $datas3 = Result::all();
@@ -55,6 +58,7 @@ class DistribusiLainnyaController extends Controller
     public function store(Request $request)
     {
         $model = new DistribusiLainnya;
+        $model2 = Muzakki::where('namaMuzakki', $request->nama)->first();
  
         $model->nama = $request->nama;
         $model->kategori = $request->kategori;
@@ -62,8 +66,12 @@ class DistribusiLainnyaController extends Controller
         $model->NIK = $request->NIK;
         $model->noKK = $request->noKK;  
         $model->terima = 0;  
+        $model->added = 1;   
+        
+        $model2->isLainnya = 1;
 
         $model->save();
+        $model2->save();
 
         return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Menambahkan Data!');
     }
@@ -95,8 +103,8 @@ class DistribusiLainnyaController extends Controller
         $model->hak = $request->hak;
         $model->NIK = $request->NIK;
         $model->noKK = $request->noKK; 
-
-        $model->save();
+  
+        $model->save(); 
         
         return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Mengubah Data!');
     }
@@ -138,6 +146,11 @@ class DistribusiLainnyaController extends Controller
     public function destroy(string $id)
     { 
         $model = DistribusiLainnya::find($id);
+        $model2 = Muzakki::where('namaMuzakki', $model->nama)->first(); 
+
+        $model2->isLainnya = 0;
+
+        $model2->save();
         $model->delete();
 
         return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Menghapus Data!');

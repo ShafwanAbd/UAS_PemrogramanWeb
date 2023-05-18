@@ -67,6 +67,7 @@
                                                 <th scope="col">Kategori</th>
                                                 <th scope="col">Diterima</th>
                                                 <th scope="col">Hak</th>
+                                                <th scope="col">Dibuat Pada</th>
                                                 @if (Auth()->user())
                                                     <th scope="col">Hapus</th> 
                                                 @endif
@@ -99,6 +100,7 @@
                                                         $totalBerasButuh += ($value3->hak / 16000);
                                                     }
                                                 @endphp
+                                                <td>{{ $value3->updated_at->format('h:i, d/m/Y') }}</td>
                                                 @if (Auth()->user())
                                                 <td class="container_button">
                                                     <form method="POST" action="{{ url('/zakatFitrah/distribusiLainnya/'.$value3->id) }}">
@@ -295,6 +297,7 @@
                             <th scope="col" colspan="2">Kategori</th>
                         @endif
                         <th scope="col">Hak</th> 
+                        <th scope="col">Dibuat Pada</th>
                         @if (auth()->check())
                         <th>Detail</th>
                         <th>Edit</th>
@@ -325,7 +328,7 @@
                         @php
                             $totalUangButuh += $value->hak
                         @endphp
-                        
+                        <td>{{ $value->created_at->format('h:i, d/m/Y') }}</td>  
                         @if (auth()->check())
                         <td class="container_button"><button class="detail" data-bs-toggle="modal" data-bs-target="#detailModal{{$value->id}}">Detail</button></td>
 

@@ -100,7 +100,7 @@
                                                         $totalBerasButuh += ($value3->hak / 16000);
                                                     }
                                                 @endphp
-                                                <td>{{ $value3->created_at->format('h:i, d/m/Y') }}</td>
+                                                <td>{{ $value3->updated_at->format('h:i, d/m/Y') }}</td>
                                                 @if (Auth()->user())
                                                 <td class="container_button">
                                                     <form method="POST" action="{{ url('/zakatFitrah/distribusiZakat/'.$value3->id) }}">
@@ -328,8 +328,8 @@
                         @php
                             $totalUangButuh += $value->hak
                         @endphp
-                        <td>{{ $value3->created_at->diffForHumans() }}</td> 
-                        <!-- <td>{{ $value3->created_at->format('h:i, d/m/Y') }}</td>  -->
+                        <td>{{ $value->created_at->format('h:i, d/m/Y') }}</td> 
+                        <!-- <td>{{ $value->created_at->format('h:i, d/m/Y') }}</td>  -->
                         @if (auth()->check())
                         <td class="container_button"><button class="detail" data-bs-toggle="modal" data-bs-target="#detailModal{{$value->id}}">Detail</button></td>
 

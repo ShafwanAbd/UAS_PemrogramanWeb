@@ -65,6 +65,8 @@ class MuzakkiController extends Controller
         $model->keterangan = $request->keterangan;
         $model->NIK = $request->NIK;
         $model->noKK = $request->noKK;
+        $model->isWarga = 0;
+        $model->isLainnya = 0;
 
         $model->save();
 

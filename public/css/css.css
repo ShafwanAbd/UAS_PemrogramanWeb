@@ -5,6 +5,10 @@ body {
     overflow-x: hidden;
 }
 
+.bg-grey {
+    background-color: #EEE;
+}
+
 a {
     color: #FFF;
     text-decoration: none;
@@ -939,4 +943,13 @@ footer .container_two .container_column h6:hover {
 
 .container_zakatFitrah .container_isi .header.laporan .container_item button {
     width: 100%;
+}
+
+
+/* RINGKASAN */
+
+.container_zakatFitrah.ringkasan {}
+
+.container_zakatFitrah.ringkasan .container_isi {
+    height: auto;
 }

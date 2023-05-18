@@ -5,6 +5,7 @@
         <div class="button_nav"></div>
         <div class="isi_nav">
             <h1>Daftar Laporan</h1>
+            <a href="{{ url('laporan/ringkasan') }}"><h3>Ringkasan</h3></a>
             <a href="{{ url('laporan/distribusiWarga') }}"><h3>Distribusi Ke Mustahik Warga</h3></a>
             <a href="{{ url('laporan/distribusiLainnya') }}"><h3>Distribusi Ke Mustahik Lainnya</h3></a> 
         </div>

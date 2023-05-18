@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('NIK')->nullable();
             $table->string('noKK')->nullable();
             $table->string('terima');
+            $table->string('added');
             $table->string('jenisTerima')->nullable();
             $table->timestamps();
         });
