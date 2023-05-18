@@ -73,7 +73,7 @@ class DistribusiLainnyaController extends Controller
         $model->save();
         $model2->save();
 
-        return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Menambahkan Data!');
+        return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Menambahkan Mustahik!');
     }
 
     /**
@@ -106,7 +106,7 @@ class DistribusiLainnyaController extends Controller
   
         $model->save(); 
         
-        return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Mengubah Data!');
+        return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Mengubah Mustahik!');
     }
 
     public function addTerima(string $id, Request $request)
@@ -153,13 +153,13 @@ class DistribusiLainnyaController extends Controller
         $model2->save();
         $model->delete();
 
-        return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Menghapus Data!');
+        return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Menghapus Mustahik!');
     }  
 
     public function destroyAll()
     { 
         DistribusiLainnya::truncate();
 
-        return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Menghapus Semua Data!');
+        return redirect('/zakatFitrah/distribusiLainnya')->with('success', 'Berhasil Menghapus Semua Mustahik!');
     }  
 }

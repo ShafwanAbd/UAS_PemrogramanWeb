@@ -29,8 +29,11 @@
                     </div>
                 </button>
 
-                <button class="item view" href="#" data-bs-toggle="modal" data-bs-target="#modal_view">
-                    <h4 class="first">Penerima</h4>
+                <button class="item view position-relative" href="#" data-bs-toggle="modal" data-bs-target="#modal_view">
+                    @if ($datas_accepted->count() > 0)
+                    <span class="helper_penerima rounded-circle">{{ $datas_accepted->count() }}</span>
+                    @endif
+                    <h4 class="first ">Penerima</h4>
                     <div class="container_img">
                         <img src="{{ asset('images/icon/view.png') }}">
                     </div>
@@ -61,8 +64,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">No</th>
-                                                <th scope="col">Id</th>
+                                                <th scope="col">No</th> 
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Kategori</th>
                                                 <th scope="col">Diterima</th>
@@ -83,8 +85,7 @@
                                             @endphp
                                             @foreach($datas_accepted as $key3=>$value3)
                                             <tr class="id_row_clickable row_animate">
-                                                <th scope="row">{{ $i++ }}</th>
-                                                <td>{{ $value3->id }}</td>
+                                                <th scope="row">{{ $i++ }}</th> 
                                                 <td>{{ $value3->nama }}</td>
                                                 <td>{{ $value3->kategori }}</td>
                                                 <td>{{ $value3->jenisTerima }}</td> 
@@ -288,8 +289,7 @@
                 @if ($datas->isEmpty() != true)
                 <thead>
                     <tr class="header-row">
-                        <th scope="col">No</th>
-                        <th scope="col">ID</th>
+                        <th scope="col">No</th> 
                         <th scope="col">Nama</th>
                         @if(Auth()->check())
                             <th scope="col">Kategori</th>
@@ -316,8 +316,7 @@
                     
                     @foreach($datas as $key=>$value)
                     <tr class="row_animate">
-                        <th scope="row">{{ $i++ }}</th>
-                        <td>{{ $value->id }}</td>
+                        <th scope="row">{{ $i++ }}</th> 
                         <td>{{ $value->nama }}</td>
                         @if(Auth()->check())
                             <td>{{ $value->kategori }}</td>

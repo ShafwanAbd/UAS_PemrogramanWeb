@@ -55,7 +55,7 @@ class KategoriMustahikController extends Controller
 
         $model->save();
 
-        return redirect('/zakatFitrah/dataKategoriMustahik')->with('success', 'Berhasil Menambahkan Data!');
+        return redirect('/zakatFitrah/dataKategoriMustahik')->with('success', 'Berhasil Menambahkan Kategori!');
     }
 
     /**
@@ -99,7 +99,7 @@ class KategoriMustahikController extends Controller
         $model->save(); 
 
 
-        return redirect('/zakatFitrah/dataKategoriMustahik')->with('success', 'Berhasil Mengubah Data!');
+        return redirect('/zakatFitrah/dataKategoriMustahik')->with('success', 'Berhasil Mengubah Kategori!');
     }
 
     /**
@@ -110,6 +110,6 @@ class KategoriMustahikController extends Controller
         $model = KategoriMustahik::find($id);
         $model->delete();
 
-        return redirect('/zakatFitrah/dataKategoriMustahik')->with('success', 'Berhasil Menghapus Data!');
+        return redirect('/zakatFitrah/dataKategoriMustahik')->with('success', 'Berhasil Menghapus Kategori!');
     }
 }

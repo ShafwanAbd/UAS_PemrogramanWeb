@@ -58,8 +58,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr class="header-row">
-                                                <th scope="col">No</th>
-                                                <th scope="col">ID</th>
+                                                <th scope="col">No</th> 
                                                 <th scope="col">Nama</th>
                                                 <th scope="col">Tanggungan</th>
                                                 <th scope="col">Tanggungan Dibayar</th>
@@ -78,8 +77,7 @@
                                             @endphp
                                             @foreach($datas_accepted as $key3=>$value3)
                                             <tr class="id_row_clickable row_animate">
-                                                <th scope="row">{{ $i++ }}</th>
-                                                <td>{{ $value3->id }}</td>
+                                                <th scope="row">{{ $i++ }}</th> 
                                                 <td>{{ $value3->namaKK }}</td>
                                                 <td>{{ $value3->jumlahTanggungan }}</td>
                                                 <td>{{ $value3->jumlahTanggunganDibayar }}</td>
@@ -367,8 +365,7 @@
                 @if ($datas->isEmpty() != true)
                 <thead>
                     <tr class="header-row">
-                        <th scope="col">No</th>
-                        <th scope="col">ID</th>
+                        <th scope="col">No</th> 
                         <th scope="col">Nama</th>
                         <th scope="col">Tanggungan</th>
                         <th scope="col">Tanggungan Dibayar</th>
@@ -391,8 +388,7 @@
                     
                     @foreach($datas as $key=>$value)
                     <tr class="row_animate">
-                        <th scope="row">{{ $i++ }}</th>
-                        <td>{{ $value->id }}</td>
+                        <th scope="row">{{ $i++ }}</th> 
                         <td>{{ $value->namaKK }}</td>
                         <td>{{ $value->jumlahTanggungan }}</td>
                         <td>{{ $value->jumlahTanggunganDibayar }}</td>

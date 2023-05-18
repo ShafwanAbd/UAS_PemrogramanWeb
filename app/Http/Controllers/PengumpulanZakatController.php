@@ -71,7 +71,7 @@ class PengumpulanZakatController extends Controller
         // $model2->totalBeras += $request->bayarBeras;
         // $model2->save();
 
-        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Menambahkan Data!');
+        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Menambahkan Muzakki!');
     }
 
     /**
@@ -105,7 +105,7 @@ class PengumpulanZakatController extends Controller
 
         $model->save();
 
-        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Mengubah Data!');
+        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Mengubah Muzakki!');
     }
 
     /**
@@ -116,14 +116,14 @@ class PengumpulanZakatController extends Controller
         $model = PengumpulanZakat::find($id);
         $model->delete(); 
 
-        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Menghapus Data!');
+        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Menghapus Muzakki!');
     }
 
     public function destroyAll()
     { 
         PengumpulanZakat::truncate(); 
 
-        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Menghapus Semua Data!');
+        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Menghapus Semua Muzakki!');
     }
 
     public function addTerima(string $id, Request $request)
@@ -146,7 +146,7 @@ class PengumpulanZakatController extends Controller
             $model2->save();
         }
 
-        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Menerima Data!'); 
+        return redirect('/zakatFitrah/pengumpulanZakat')->with('success', 'Berhasil Menerima Muzakki!'); 
     }
 
     public function resetTotalUang()

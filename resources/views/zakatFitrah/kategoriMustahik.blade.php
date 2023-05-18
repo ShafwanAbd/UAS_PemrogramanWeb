@@ -51,6 +51,7 @@
                                         <div class="mb-3">
                                             <label for="message-text" class="col-form-label">Jumlah Hak:</label>
                                             <input name="jumlahHak" type="text" class="form-control" id="message-text" required>
+                                            <div id="helperJTD" class="form-text">Isi dengan Bentuk Uang/Rupiah (ex: 20000).</div>
                                         </div>
                                     </div>
 
@@ -112,8 +113,7 @@
                 @if ($datas->isEmpty() != true)
                 <thead>
                     <tr class="header-row">
-                        <th scope="col">No</th>
-                        <th scope="col">ID</th>
+                        <th scope="col">No</th> 
                         <th scope="col">Nama Kategori</th>
                         <th scope="col">Jumlah Hak</th>
                         @if(auth()->check())
@@ -130,8 +130,7 @@
                     
                     @foreach($datas as $key=>$value)
                     <tr class="row_animate">
-                        <th scope="row">{{ $i++ }}</th>
-                        <td>{{ $value->id }}</td>
+                        <th scope="row">{{ $i++ }}</th> 
                         <td>{{ $value->namaKategori }}</td> 
                         <td>{{ @money($value->jumlahHak) }}</td>
                         @if(auth()->check())

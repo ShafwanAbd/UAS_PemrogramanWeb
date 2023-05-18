@@ -9,7 +9,7 @@
 
         <div class="container_isi mt-4"> 
             <div class="header flex laporan">
-                <h1 class="title">Ringkasan</h1>
+                <h1 class="title mx-3">Ringkasan</h1>
                 
                 <div class="container_item flex">    
                     <button class="item tambah" id="printButton1">
@@ -32,10 +32,21 @@
                     new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: ['Fakir', 'Miskin', 'Mampu', 'Amil', 'Muallaf', 'Riqab', 'Gharim', 'Fisabilillah', 'Ibnu Sabil'],
+                            labels: ['Fakir', 'Miskin', 'Mampu', 'Amil', 'Mu\'allaf', 'Riqab', 'Gharim', 'Fisabilillah', 'Ibnu Sabil', 'Lainnya'],
                             datasets: [{
-                                label: '',
-                                data: [12, 19, 3, 5, 2, 3],
+                                label: 'Jumlah Warga Berdasarkan Kategori',
+                                data: [
+                                    '{{ $datas["fakir"] }}',
+                                    '{{ $datas["miskin"] }}',
+                                    '{{ $datas["mampu"] }}',
+                                    '{{ $datas["amil"] }}',
+                                    '{{ $datas["muallaf"] }}',
+                                    '{{ $datas["riqab"] }}',
+                                    '{{ $datas["gharim"] }}',
+                                    '{{ $datas["fiSabilillah"] }}',
+                                    '{{ $datas["ibnuSabil"] }}',
+                                    '{{ $datas["lainnya"] }}', 
+                                ],
                                 borderWidth: 1,
                                 backgroundColor: 'rgb(14,176,0)'
                             }]

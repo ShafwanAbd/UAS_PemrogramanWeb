@@ -90,6 +90,16 @@ li {
     background-color: #870000;
 }
 
+.helper_penerima {
+    position: absolute;
+    top: -7.5px;
+    right: -7.5px;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    padding-top: 0.25vh !important;
+}
+
 
 /* width */
 

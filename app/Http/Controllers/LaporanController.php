@@ -15,6 +15,18 @@ class LaporanController extends Controller
         $datas['result'] = Result::first();
         $datas['muzakki'] = Muzakki::all()->count();
         $datas['tanggungan'] = 0;
+ 
+        $datas['fakir'] = DistribusiZakat::where('kategori', 'Fakir')->count();
+        $datas['miskin'] = DistribusiZakat::where('kategori', 'Miskin')->count();
+        $datas['mampu'] = DistribusiZakat::where('kategori', 'Mampu')->count();
+ 
+        $datas['amil'] = DistribusiLainnya::where('kategori', 'Amil')->count();
+        $datas['muallaf'] = DistribusiLainnya::where('kategori', 'Mu\'allaf')->count();
+        $datas['riqab'] = DistribusiLainnya::where('kategori', 'Riqab')->count();
+        $datas['gharim'] = DistribusiLainnya::where('kategori', 'Gharim')->count();
+        $datas['fiSabilillah'] = DistribusiLainnya::where('kategori', 'Fi Sabilillah')->count();
+        $datas['ibnuSabil'] = DistribusiLainnya::where('kategori', 'Ibnu Sabil')->count();
+        $datas['lainnya'] = DistribusiLainnya::whereNotIn('kategori', ['Amil','Mu\'allaf', 'Riqab', 'Gharim', 'Fi Sabilillah', 'Ibnu Sabil'])->count();
 
         $tanggungan = Muzakki::all()->pluck('jumlahTanggungan');
         foreach($tanggungan as $i){

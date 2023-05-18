@@ -51,7 +51,7 @@
         <div class="isi_one">
             <div class="inner_one">
                 <div class="container_img">
-                    <img src="{{ asset('images/beranda/people2.png') }}">
+                    <img src="{{ asset('images/beranda/img4.jpg') }}">
                 </div>
             </div>
             <div class="inner_two" id="inner_two_id">
@@ -67,6 +67,7 @@
             <script>
                 // get the element you want to animate
                 const targetElement = document.querySelector('#inner_two_id');
+                const targetElementpre = document.querySelector('.inner_one');
 
                 // create a new intersection observer
                 const observer = new IntersectionObserver(entries => {
@@ -77,6 +78,9 @@
                         // add a CSS class to the target element to start the animation
                         targetElement.classList.add('animate__animated');
                         targetElement.classList.add('animate__fadeInRight');
+
+                        targetElementpre.classList.add('animate__animated');
+                        targetElementpre.classList.add('animate__fadeInLeft');
                         } 
                     });
                 }, {

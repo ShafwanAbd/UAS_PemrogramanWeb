@@ -186,8 +186,7 @@
                 @if ($datas->isEmpty() != true)
                 <thead>
                     <tr class="header-row">
-                        <th scope="col">No</th>
-                        <th scope="col">ID</th>
+                        <th scope="col">No</th> 
                         <th scope="col">Nama</th>
                         <th scope="col">Jumlah Tanggungan</th>
                         <th scope="col">Keterangan</th>
@@ -206,8 +205,7 @@
                     
                     @foreach($datas as $key=>$value)
                     <tr class="row_animate">
-                        <th scope="row">{{ $i++ }}</th>
-                        <td>{{ $value->id }}</td>
+                        <th scope="row">{{ $i++ }}</th> 
                         <td>{{ $value->namaMuzakki }}</td>
                         <td>{{ $value->jumlahTanggungan }}</td>
                         @if (isset($value->keterangan))

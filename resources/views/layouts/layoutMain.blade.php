@@ -39,7 +39,7 @@
             <div class="container_inner_nav">
                 <a href="{{ url('beranda') }}"><h4>Beranda</h4></a>
                 <a href="{{ url('zakatFitrah/dataMuzakki') }}"><h4>Zakat Fitrah</h4></a>
-                <a href="{{ url('laporan/distribusiWarga') }}"><h4>Laporan</h4></a>
+                <a href="{{ url('laporan/ringkasan') }}"><h4>Laporan</h4></a>
                 @guest
                     @if (Route::has('login'))
                             <a href="{{ route('login') }}"><h4>{{ __('Login') }}</h4></a>

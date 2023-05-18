@@ -70,7 +70,7 @@ class MuzakkiController extends Controller
 
         $model->save();
 
-        return redirect('/zakatFitrah/dataMuzakki')->with('success', 'Berhasil Menambahkan Data!');
+        return redirect('/zakatFitrah/dataMuzakki')->with('success', 'Berhasil Menambahkan Muzakki!');
     }
 
     /**
@@ -119,7 +119,7 @@ class MuzakkiController extends Controller
         
         $model->save();
 
-        return redirect('/zakatFitrah/dataMuzakki')->with('success', 'Berhasil Mengubah Data!');
+        return redirect('/zakatFitrah/dataMuzakki')->with('success', 'Berhasil Mengubah Muzakki!');
     }
 
     /**
@@ -130,6 +130,6 @@ class MuzakkiController extends Controller
         $model = Muzakki::find($id);
         $model->delete();
 
-        return redirect('/zakatFitrah/dataMuzakki')->with('success', 'Berhasil Menghapus Data!');
+        return redirect('/zakatFitrah/dataMuzakki')->with('success', 'Berhasil Menghapus Muzakki!');
     }
 }
