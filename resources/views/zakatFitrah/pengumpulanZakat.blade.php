@@ -631,8 +631,8 @@
                 </tbody>
                 <tfoot class="row_animate">
                     <th></th>
-                    <th colspan="5">Total Beras/Uang</th>
-                    <th>{{ $totalBeras }} Kg/{{ @money($totalUang) }}</th>
+                    <th colspan="{{ Auth::check() ? '5' : '3' }}">Total Beras/Uang</th>
+                    <th colspan="4">{{ $totalBeras }} Kg/{{ @money($totalUang) }}</th>
                 </tfoot>
 
                 @else

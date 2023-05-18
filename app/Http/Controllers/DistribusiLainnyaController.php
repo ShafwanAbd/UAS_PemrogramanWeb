@@ -148,6 +148,7 @@ class DistribusiLainnyaController extends Controller
         $model = DistribusiLainnya::find($id);
         $model2 = Muzakki::where('namaMuzakki', $model->nama)->first(); 
 
+        $model2->isWarga = 0;
         $model2->isLainnya = 0;
 
         $model2->save();

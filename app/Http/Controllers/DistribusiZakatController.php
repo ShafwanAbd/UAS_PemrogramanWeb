@@ -149,6 +149,7 @@ class DistribusiZakatController extends Controller
         $model2 = Muzakki::where('namaMuzakki', $model->nama)->first(); 
         
         $model2->isLainnya = 0;
+        $model2->isWarga = 0;
 
         $model2->save();
         $model->delete();
